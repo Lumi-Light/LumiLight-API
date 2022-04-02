@@ -1,0 +1,38 @@
+  <%- include("header") -%>
+
+  <section class="sec1">
+    <h4>Defective Lights: </h4>
+
+    <div class="lightsList">
+      <%for(light of defectiveLights){%>
+        <button type="button" class="navBtn locBtn" onclick="changeMap(<%= light.loc[0]%>, <%= light.loc[1]%>)">Light: <%= light._id%></button><br><br>
+      <%}%>
+    </div>
+
+    <% let firstUrl ="https://maps.google.com/maps?q="+defectiveLights[0].loc[0]+","+defectiveLights[0].loc[1]+"&hl=en&z=17&output=embed"%>
+
+    <iframe
+      id="mapFrame"
+      width="800"
+      height="400"
+      frameborder="0"
+      scrolling="no"
+      marginheight="0"
+      marginwidth="0"
+      src=<%= firstUrl%>
+    >
+    </iframe>
+  </section>
+
+
+  <script type="text/javascript">
+    const mapFrame = document.getElementById("mapFrame");
+    function changeMap(xCood, yCood){
+      let url = "https://maps.google.com/maps?q="+xCood+","+yCood+"&hl=en&z=17&output=embed";
+      mapFrame.setAttribute("src", url);
+    }
+  </script>
+
+</body>
+
+</html>
